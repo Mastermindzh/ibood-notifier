@@ -38,6 +38,8 @@ jspm_packages
 
 # Babel transpiled code directory
 lib
+dist
 
 #mac specific
 .DS_Store
+
