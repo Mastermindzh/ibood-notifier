@@ -47,8 +47,8 @@ function notify(json) {
 
   let notifierToUse = notifier;
 
-  if(process.platform == "darwin"){
-    notifierToUse = notifier.NotificationCenter;
+  if(process.platform == "darwin"){    
+    notifierToUse = new notifier.NotificationCenter();
   }
 
   notifier.on('click', function(notifierObject, options) {
