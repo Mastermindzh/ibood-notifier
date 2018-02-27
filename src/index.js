@@ -1,5 +1,5 @@
 import axios from "axios";
-import notifier from "node-notifier";
+import notifier, {NotificationCenter} from "node-notifier";
 import cheerio from "cheerio";
 import opn from "opn";
 import path from "path"
@@ -45,18 +45,21 @@ function isNew(json) {
 function notify(json) {
   let priceInfo = getPriceInfo(json.Price);
 
-  notifier.on('click', function(notifierObject, options) {
+  let notifierToUse = notifier;
+
+  if(process.platform == "darwin"){
+    notifierToUse = notifier.NotificationCenter;
+  }
+
+  notifierToUse.on('click', function(notifierObject, options) {
     opn(json.Permalink);
   });
 
-  console.log(path.join(__dirname, 'images/hunt.png'));
-
-  notifier.notify({
+  notifierToUse.notify({
     title: json.Title,
     message: `From ${priceInfo.oldPrice} for ${priceInfo.newPrice} (${priceInfo.discountPercentage}%)`,
     icon: path.join(__dirname, 'images/hunt.png'),
-    contentImage: getImage(cleanHTML(json.Image)),
-    timeout: 2
+    contentImage: getImage(cleanHTML(json.Image))
   });
 }
 
