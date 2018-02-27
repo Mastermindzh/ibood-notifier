@@ -51,12 +51,13 @@ function notify(json) {
     notifierToUse = notifier.NotificationCenter;
   }
 
-  notifierToUse.on('click', function(notifierObject, options) {
+  notifier.on('click', function(notifierObject, options) {
     opn(json.Permalink);
   });
 
   notifierToUse.notify({
     title: json.Title,
+    open: json.Permalink,
     message: `From ${priceInfo.oldPrice} for ${priceInfo.newPrice} (${priceInfo.discountPercentage}%)`,
     icon: path.join(__dirname, 'images/hunt.png'),
     contentImage: getImage(cleanHTML(json.Image))
