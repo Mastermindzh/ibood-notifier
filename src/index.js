@@ -6,6 +6,8 @@ import path from "path"
 
 let currentTitle = "";
 var timer = "";
+let protocol = "http://"
+
 
 function getImage(imageHTML){
   let dom = cheerio.load(imageHTML)
@@ -30,7 +32,7 @@ function cleanHTML(html){
 }
 
 function getJson() {
-  axios.get('http://feeds.ibood.com/nl/nl/offer.json').then(result => {
+  axios.get(`${protocol}feeds.ibood.com/nl/nl/offer.json`).then(result => {
     if (isNew(result.data)) {
       currentTitle = result.data.Title;
       notify(result.data)
@@ -56,11 +58,11 @@ function notify(json) {
   });
 
   notifierToUse.notify({
-    title: json.Title,
+    title: json.ShortTitle,
     open: json.Permalink,
     message: `From ${priceInfo.oldPrice} for ${priceInfo.newPrice} (${priceInfo.discountPercentage}%)`,
     icon: path.join(__dirname, 'images/hunt.png'),
-    contentImage: getImage(cleanHTML(json.Image))
+    contentImage: `${protocol}${getImage(cleanHTML(json.Image))}`
   });
 }
 
