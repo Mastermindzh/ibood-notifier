@@ -14,3 +14,5 @@ Cross platform NodeJS package which fires a notification every time [ibood](http
 
 ![linux](https://github.com/Mastermindzh/ibood-notifier/blob/master/examples/linux.png?raw=true)
 ![mac os x](https://github.com/Mastermindzh/ibood-notifier/blob/master/examples/mac.jpeg?raw=true)
+![win1](https://github.com/Mastermindzh/ibood-notifier/blob/master/examples/win.png?raw=true)
+![win2](https://github.com/Mastermindzh/ibood-notifier/blob/master/examples/win2.png?raw=true)
