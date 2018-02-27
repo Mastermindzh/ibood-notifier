@@ -10,7 +10,7 @@
   },
   "scripts": {
     "lint": "eslint src/**",
-    "prebuild": "cp -R src/images/ lib/",
+    "prebuild": "node tools/copy.js",
     "build": "babel --presets es2015 src -d lib",
     "run-prod": "node lib/",
     "prepublish": "npm run build",
@@ -34,6 +34,7 @@
     "babel-core": "^6.26.0",
     "babel-preset-es2015": "^6.24.1",
     "chai": "^3.5.0",
+    "copy-dir": "^0.3.0",
     "eslint": "^3.19.0",
     "eslint-config-airbnb": "^14.1.0",
     "eslint-plugin-import": "^2.7.0",
